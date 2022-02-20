@@ -1,0 +1,82 @@
+*{
+    font-family: "Rubik", sans-serif;
+}
+.App {
+min-height: 100vh;
+h1{
+    width: fit-content;
+    color: white;
+    margin: 0 auto;
+    padding: 20px;
+}  
+}
+.inputSection{
+    background-image: url('./images/pattern-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    max-height:250px;
+    padding: 0px 20px;
+}
+.inputContainer{
+    background-color: white;
+    display: flex;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 15px;
+    margin: 0 auto;
+    input{
+        width: 85%;
+        border: none;
+        outline: none;
+        padding: 20px;
+        border-radius: 15px;
+        font-size: 18px;
+    }
+}
+.submitBtn{
+    background-color: black;
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:0px 15px 15px 0px;
+    cursor: pointer;
+    img{
+        width: 100%;
+        max-width: 10px;
+    }
+}
+.outputSection{
+    max-width: 1000px;
+    background-color: white;
+    padding: 20px;
+    position: absolute !important;
+    z-index:100000000000;
+    left: 0;
+    right: 0;
+    top:175px;
+    margin: 0px auto;
+    border-radius: 15px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+}
+.fuck{
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    div{
+        padding: 10px;
+        span{
+            color:  hsl(0, 0%, 59%);
+        }p{
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+    }
+}
+.leaflet-container{
+  width: 100vw;
+  height: 100vh;
+}
