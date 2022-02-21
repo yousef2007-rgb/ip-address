@@ -13,6 +13,7 @@
   color: white;
   margin: 0 auto;
   padding: 20px;
+  font-size: 25px;
 }
 
 .inputSection {
@@ -78,28 +79,37 @@
   border-radius: 15px;
   -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-}
-
-.fuck {
-  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
 
-.fuck div {
+@media (max-width: 800px) {
+  .outputSection {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    text-align: center;
+    max-width: 300px;
+  }
+  .outputSection p {
+    margin: 2px;
+  }
+}
+
+.outputSection div {
   padding: 10px;
 }
 
-.fuck div span {
+.outputSection div span {
   color: #969696;
 }
 
-.fuck div p {
+.outputSection div p {
   font-size: 1.5rem;
   font-weight: 700;
 }

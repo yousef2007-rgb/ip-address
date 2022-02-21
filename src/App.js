@@ -1,20 +1,26 @@
 import './App.css';
 import arrowIcon from './images/icon-arrow.svg';
-import {useEffect,useState} from 'react';
+import {useEffect,useState,useRef} from 'react';
 import {MapContainer,TileLayer, Marker, Popup} from 'react-leaflet';
+import 'leaflet/dist/leaflet.css'
 import pointer from '../src/images/icon-location.svg';
+import L from 'leaflet'
 function App() {
   const [IpAdress, fetchIpAdress] = useState([]);
+  const mapRef = useRef();
   const [IpInformation, fetchIpInformation] = useState({
     ip:'Loading',
     location:{
       city:'Loading',
       country:'Loading',
       timezone:'Loading',
-      postalcode:'Loading'
+      postalcode:'Loading',
+      lat:0,
+      lng:-0.09
     },
     isp:'Loading'
   });
+  const [center, setCenter] = useState([IpInformation.location.lat, IpInformation.location.lng]);
   const [inputValue, setInputValue] = useState("");
   const getData = (IpAdress) =>{
     
@@ -22,7 +28,6 @@ function App() {
     .then((res) => res.json())
     .then((res) => {
       if(res.code != 422){
-        console.log(res)
         fetchIpInformation(res)
       }else{
         alert('the ip address you enterd is wrong');
@@ -51,7 +56,12 @@ function App() {
       getData(inputValue)
     }
   }; 
-  const position = [51.505, -0.09]
+  var markerIcon = L.icon({
+    iconUrl: pointer,
+    iconSize: [46, 56], 
+    iconAnchor: [23, 55],
+  });
+  
   return (
     <div className="App">
       <div className='inputSection'>
@@ -64,12 +74,13 @@ function App() {
       </div>
       </div>
      <div id='map'>
-      <MapContainer center={[51.505, -0.09]} zoom={13}>
+      <MapContainer ref={mapRef} center={[IpInformation.location.lat, IpInformation.location.lng]}  zoom={13}  key={`${IpInformation.location.lat}${IpInformation.location.lng}`}>
         <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={[51.505, -0.09]}>
+        
+        <Marker position={[IpInformation.location.lat, IpInformation.location.lng]} icon={markerIcon}>
       <Popup>
         A pretty CSS3 popup. <br /> Easily customizable.
       </Popup>
@@ -77,7 +88,6 @@ function App() {
       </MapContainer>
       </div>
       <div className='outputSection'>
-        <div className='fuck'>
         <div className='information'>
           <span>ip address</span>
           <p>{IpInformation.ip}</p>
@@ -95,10 +105,17 @@ function App() {
           <p>{IpInformation.isp}</p>
         </div>
       </div>
-      </div>
      
     </div>
   );
 }
+/*
+      <MapContainer
+        center={[IPdata.location?.lat, IPdata.location?.lng]}
+        zoom={13}
+        scrollWheelZoom={true}
+        key={`${IPdata.location?.lat}${IPdata.location?.lng}`}
+      >
 
+*/
 export default App;
